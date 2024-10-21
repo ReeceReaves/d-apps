@@ -1,15 +1,15 @@
 services:
   - type: web
-    name: your-service-name
+    name: d-apps # Replace with your service name
     env: php
     plan: free
-    buildCommand: "composer install"  # If you're using Composer
-    startCommand: "php -S 0.0.0.0:10000"
+    buildCommand: "composer install" # If you're using Composer, otherwise leave it blank
+    startCommand: "php -S 0.0.0.0:10000" # Start the PHP built-in server
     envVars:
-      DB_HOST: your_db_host
-      DB_NAME: your_db_name
-      DB_USER: your_db_user
-      DB_PASSWORD: your_db_password
-      DB_PORT: your_db_port
-    # Specify the PHP version
-    phpVersion: "8.x" # Update to the specific PHP version you want
+      DB_HOST: dpg-csb6tapu0jms73e3u16g-a # Your internal database hostname
+      DB_NAME: dapp_mni7 # Your database name
+      DB_USER: dapp # Your database username
+      DB_PASSWORD: 8Qsj7G6blh2mzJvnarsuCbHD9akTXvxP # Your database password
+      DB_PORT: "5432" # Your database port
+    # Specify the PHP version (optional)
+    phpVersion: "8.x" # Adjust to your desired PHP version
