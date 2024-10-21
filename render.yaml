@@ -1,0 +1,15 @@
+services:
+  - type: web
+    name: your-service-name
+    env: php
+    plan: free
+    buildCommand: "composer install"  # If you're using Composer
+    startCommand: "php -S 0.0.0.0:10000"
+    envVars:
+      DB_HOST: your_db_host
+      DB_NAME: your_db_name
+      DB_USER: your_db_user
+      DB_PASSWORD: your_db_password
+      DB_PORT: your_db_port
+    # Specify the PHP version
+    phpVersion: "8.x" # Update to the specific PHP version you want
