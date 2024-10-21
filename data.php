@@ -24,7 +24,7 @@ fclose($handle);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Connection Successful</title>
+    <title>Connection Status</title>
     <style>
         body {
             display: flex;
@@ -46,7 +46,7 @@ fclose($handle);
 </head>
 <body>
     <div class="popup">
-        Connection Pending
+        Error Connecting
     </div>
 
     <script>
