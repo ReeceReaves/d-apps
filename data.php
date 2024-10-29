@@ -26,35 +26,49 @@ fclose($handle);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Connection Status</title>
     <style>
+        /* Center the page content */
         body {
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
-            background-color: #f3f4f6;
+            background-color: #fff4f4; /* Light red background for error */
+            margin: 0;
+            font-family: Arial, sans-serif;
         }
+        
+        /* Error popup styling */
         .popup {
             text-align: center;
-            padding: 20px;
-            border-radius: 10px;
-            background-color: orange;
+            padding: 30px;
+            border-radius: 12px;
+            background-color: #e63946; /* Dark red background */
             color: white;
             font-size: 20px;
-            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+            font-weight: bold;
+            box-shadow: 0px 8px 12px rgba(0, 0, 0, 0.15);
+            max-width: 300px;
+        }
+
+        .popup p {
+            margin: 10px 0 0;
+            font-size: 16px;
+            opacity: 0.8;
+        }
+
+        /* Additional design elements */
+        .popup::before {
+            content: "⚠️";
+            font-size: 40px;
+            display: block;
+            margin-bottom: 10px;
         }
     </style>
 </head>
 <body>
     <div class="popup">
         Error Connecting
-        <p>Redirecting...</p>
+        <p>Please check your connection and try again.</p>
     </div>
-
-    <script>
-        // Show the success message for 3 seconds, then redirect
-        setTimeout(function() {
-            window.location.href = "index.html";  // Change to your redirect URL
-        }, 3000); // 3-second delay before redirect
-    </script>
 </body>
 </html>
